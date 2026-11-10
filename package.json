@@ -14,7 +14,8 @@
     "@markdoc/markdoc": "0.4.0",
     "next": "16.4.6",
     "react": "19.2.6",
-    "react-dom": "19.2.6"
+    "react-dom": "19.2.6",
+    "shiki": "4.6.0"
   },
   "devDependencies": {
     "@types/node": "22.19.19",

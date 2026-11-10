@@ -35,7 +35,8 @@ The build generates a static website in `out/`. Deploy that directory to any sta
 - `lib/bash-notes.ts` — topic order, card extraction, and table splitting.
 - `app/BashReference.tsx` — client-side search and topic navigation.
 - `app/CodeBlock.tsx` — copyable code examples; nothing executes commands.
-- `app/bash.css` and `app/globals.css` — responsive layout and light/dark theme.
+- `app/HighlightedCode.tsx` — build-time Bash highlighting for both themes; Shiki is not shipped to the browser.
+- `app/bash.css` and `app/globals.css` — responsive column-packed cards and light/dark theme. Cards read down each column without shared row heights; long table descriptions receive more space.
 - `deploy/Caddyfile.example` — static hosting on an existing server.
 
 Markdown is rendered at build time with Markdoc. Search runs locally in the browser; the site has no analytics, tracking, newsletter collection, or server process. Theme choice is saved in browser local storage. Rebuild after changing notes. Internet access to Google Fonts is required at build time; the resulting font files are served locally.

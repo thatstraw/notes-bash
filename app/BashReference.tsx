@@ -46,7 +46,6 @@ export function BashReference({ topics }: { topics: Topic[] }) {
       <aside className="bash-toc">
         <span className="bash-label">IN THESE NOTES</span>
         <nav aria-label="Bash topics">{topics.map((topic, index) => <a key={topic.slug} href={`#${topic.slug}`} onClick={() => setQuery("")}><span>{String(index + 1).padStart(2, "0")}</span>{topic.title}</a>)}</nav>
-        <p>Written while learning.<br/>Kept around for forgetting.</p>
         <p><a href="https://github.com/thatstraw/notes-bash">Source & contributions ↗</a></p>
         <a className="bash-back-top" href="#top">Back to top ↑</a>
       </aside>

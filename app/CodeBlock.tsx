@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 
-export function CodeBlock({ content, language }: { content: string; language?: string }) {
+export function CodeBlock({ content, language, children }: { content: string; language?: string; children?: ReactNode }) {
   const [status, setStatus] = useState("Copy");
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
   useEffect(() => () => { if (timer.current) clearTimeout(timer.current); }, []);
@@ -20,6 +20,6 @@ export function CodeBlock({ content, language }: { content: string; language?: s
 
   return <div className="bash-code">
     <div className="bash-code-bar"><span>{language || "bash"}</span><button type="button" onClick={copy} aria-label="Copy code"><span aria-live="polite">{status}</span></button></div>
-    <pre tabIndex={0} aria-label={`${language || "Bash"} code example`}><code>{content}</code></pre>
+    <pre tabIndex={0} aria-label={`${language || "Bash"} code example`}><code>{children ?? content}</code></pre>
   </div>;
 }

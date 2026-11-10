@@ -14,7 +14,6 @@
 .bash-hero h1 span { color:var(--accent); }
 .bash-hero-bottom { display:flex; align-items:end; justify-content:space-between; gap:40px; }
 .bash-hero p { max-width:570px; margin:0; font-size:15px; color:var(--muted); line-height:1.8; }
-.bash-hero-aside { color:var(--muted); font:11px/1.8 var(--font-geist-mono),monospace; text-align:right; }
 .bash-search-strip { display:flex; align-items:center; gap:24px; padding:22px 0; border-block:1px solid var(--line); }
 .bash-search-field { display:flex; align-items:center; gap:12px; width:min(660px,100%); padding:11px 14px; border:1px solid var(--line); border-radius:9px; background:var(--panel); }
 .bash-search-field:focus-within { outline:2px solid var(--accent); outline-offset:3px; }
@@ -39,8 +38,8 @@
 .bash-topic-heading h2 span { color:var(--muted); font-size:15px; }
 .bash-topic-heading p { color:var(--muted); font-size:12px; margin:0; }
 .bash-topic-mark { font:32px var(--font-geist-mono),monospace; color:var(--line); }
-.bash-card-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; align-items:start; }
-.bash-card { min-width:0; border:1px solid var(--line); border-radius:10px; overflow:hidden; background:var(--bg); scroll-margin-top:24px; }
+.bash-card-grid { column-count:2; column-gap:16px; }
+.bash-card { min-width:0; break-inside:avoid; margin-bottom:16px; border:1px solid var(--line); border-radius:10px; overflow:hidden; background:var(--bg); scroll-margin-top:24px; }
 .bash-card:target { outline:2px solid var(--accent); outline-offset:4px; }
 .bash-card h3 { font-size:13px; font-weight:550; padding:13px 16px; margin:0; border-bottom:1px solid var(--line); background:var(--panel); line-height:1.5; }
 .bash-card-body { padding:14px; font-size:12px; line-height:1.75; overflow-wrap:anywhere; }
@@ -51,6 +50,11 @@
 .bash-card-body table { width:100%; border-collapse:collapse; table-layout:fixed; font-size:11px; }
 .bash-card-body :is(th,td) { text-align:left; padding:8px 7px; border-bottom:1px solid var(--line); vertical-align:top; }
 .bash-card-body th { font-size:10px; font-weight:550; color:var(--muted); }
+.bash-card-body th:first-child { width:40%; }
+.bash-card-body th:last-child { width:60%; }
+.bash-card-body table:has(th:nth-child(3)) th:first-child { width:18%; }
+.bash-card-body table:has(th:nth-child(3)) th:nth-child(2) { width:24%; }
+.bash-card-body table:has(th:nth-child(3)) th:last-child { width:58%; }
 .bash-card-body tr:last-child td { border-bottom:0; }
 .bash-card-body td:first-child { color:var(--accent); }
 .bash-card-body code,.bash-caution code,.bash-empty code { font: .95em/1.65 var(--font-geist-mono),monospace; white-space:break-spaces; }
@@ -59,6 +63,8 @@
 .bash-code-bar button { border:0; background:transparent; color:var(--muted); font:inherit; padding:4px; cursor:pointer; }
 .bash-code pre { overflow-x:auto; margin:0; padding:13px; font-size:11px; line-height:1.8; tab-size:2; }
 .bash-code pre code { white-space:pre; }
+.bash-code pre code span { color:var(--shiki-light,inherit); }
+[data-theme="dark"] .bash-code pre code span { color:var(--shiki-dark,inherit); }
 .bash-caution { padding:12px 14px; border-left:2px solid var(--accent); background:var(--panel); color:var(--muted); font-size:12px; margin:0 0 20px; }
 .bash-empty { padding:50px 0; }
 .bash-empty h2 { font-size:22px; overflow-wrap:anywhere; }
@@ -71,9 +77,9 @@
 .bash-footer a:hover { color:var(--accent); }
 .bash-sr-only,.bash-skip:not(:focus) { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap; }
 .bash-skip:focus { position:fixed; top:12px; left:12px; z-index:20; padding:8px 16px; background:var(--bg); }
-@media(min-width:1450px) { .bash-card-grid { grid-template-columns:repeat(3,minmax(0,1fr)); } }
+@media(min-width:1450px) { .bash-card-grid { column-count:3; } }
 @media(max-width:1050px) { .bash-wrap { width:calc(100% - 48px); } .bash-layout { grid-template-columns:150px minmax(0,1fr); gap:24px; } .bash-toc nav { font-size:11px; } }
-@media(max-width:780px) { .bash-layout { grid-template-columns:minmax(0,1fr); } .bash-toc { position:static; max-height:none; overflow:visible; } .bash-toc nav { flex-direction:row; flex-wrap:wrap; gap:7px; margin-top:12px; } .bash-toc nav a { border:1px solid var(--line); border-radius:5px; padding:6px 9px; } .bash-toc :is(p,.bash-back-top),.bash-hero-aside { display:none; } .bash-search-strip { flex-direction:column; align-items:stretch; gap:12px; } .bash-search-field { width:100%; } .bash-search-strip { padding-block:18px; } .bash-hero { padding-block:36px 28px; } .bash-hero h1 { letter-spacing:-2px; } }
-@media(max-width:540px) { .bash-wrap { width:calc(100% - 32px); } .bash-header { padding-block:14px; } .bash-card-grid { grid-template-columns:minmax(0,1fr); } .bash-card-body { font-size:13px; } .bash-card-body table { font-size:12px; } .bash-code pre { font-size:12px; } .bash-hero p { font-size:14px; } .bash-layout { padding-top:24px; gap:32px; } }
+@media(max-width:780px) { .bash-layout { grid-template-columns:minmax(0,1fr); } .bash-toc { position:static; max-height:none; overflow:visible; } .bash-toc nav { flex-direction:row; flex-wrap:wrap; gap:7px; margin-top:12px; } .bash-toc nav a { border:1px solid var(--line); border-radius:5px; padding:6px 9px; } .bash-toc :is(p,.bash-back-top) { display:none; } .bash-search-strip { flex-direction:column; align-items:stretch; gap:12px; } .bash-search-field { width:100%; } .bash-search-strip { padding-block:18px; } .bash-hero { padding-block:36px 28px; } .bash-hero h1 { letter-spacing:-2px; } }
+@media(max-width:540px) { .bash-wrap { width:calc(100% - 32px); } .bash-header { padding-block:14px; } .bash-card-grid { column-count:1; } .bash-card-body { font-size:13px; } .bash-card-body table { font-size:12px; } .bash-code pre { font-size:12px; } .bash-hero p { font-size:14px; } .bash-layout { padding-top:24px; gap:32px; } }
 @media(max-width:540px) { .bash-header { gap:12px; flex-wrap:wrap; } .bash-github-link { order:4; margin-left:0; flex-basis:100%; padding:4px 0; } .bash-github-link + .theme-toggle { margin-left:auto; } .bash-topic-heading { flex-wrap:wrap; gap:10px; } }
 @media(prefers-reduced-motion:reduce) { html:has(.bash-page) { scroll-behavior:auto; } }
