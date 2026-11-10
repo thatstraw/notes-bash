@@ -1,0 +1,13 @@
+bash.traw.sh {
+    root * /opt/bash-notes/current
+    encode zstd gzip
+    header {
+        X-Content-Type-Options nosniff
+        Referrer-Policy strict-origin-when-cross-origin
+    }
+    @assets path /_next/static/*
+    header @assets Cache-Control "public, max-age=31536000, immutable"
+    @documents path / /index.html /robots.txt /sitemap.xml
+    header @documents Cache-Control "no-cache"
+    file_server
+}
